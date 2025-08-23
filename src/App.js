@@ -1,10 +1,10 @@
 import React from "react";
-import ExpensiveCalculation from "./ExpensiveCalculation";
+import CallbackDemo from "./CallbackDemo";
 
 function App() {
   return (
     <div className="h-screen flex items-center justify-center bg-gray-100">
-      <ExpensiveCalculation />
+      <CallbackDemo />
     </div>
   );
 }
