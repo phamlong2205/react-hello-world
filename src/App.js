@@ -1,10 +1,10 @@
 import React from "react";
-import UseEffectDemo from "./UseEffectDemo";
+import ExpensiveCalculation from "./ExpensiveCalculation";
 
 function App() {
   return (
     <div className="h-screen flex items-center justify-center bg-gray-100">
-      <UseEffectDemo />
+      <ExpensiveCalculation />
     </div>
   );
 }
