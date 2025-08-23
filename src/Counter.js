@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import Button from "./Button";
 
-// Replace <button>...</button> with:
-<Button onClick={handleIncrement}>Increment</Button>
-
-
 function Counter() {
   const [count, setCount] = useState(0);
 
