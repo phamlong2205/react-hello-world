@@ -1,11 +1,16 @@
 import React from "react";
-import ListForm from "./ListForm";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./Home";
+import Profile from "./Profile";
 
 function App() {
   return (
-    <div className="h-screen flex items-center justify-center bg-gray-100">
-      <ListForm />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/profile" element={<Profile />} />
+      </Routes>
+    </Router>
   );
 }
 
