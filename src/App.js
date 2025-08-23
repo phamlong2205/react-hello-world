@@ -1,10 +1,10 @@
 import React from "react";
-import CallbackDemo from "./CallbackDemo";
+import FormDemo from "./FormDemo";
 
 function App() {
   return (
     <div className="h-screen flex items-center justify-center bg-gray-100">
-      <CallbackDemo />
+      <FormDemo />
     </div>
   );
 }
