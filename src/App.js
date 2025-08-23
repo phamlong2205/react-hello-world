@@ -1,10 +1,10 @@
 import React from "react";
-import Counter from "./Counter";
+import ListForm from "./ListForm";
 
 function App() {
   return (
     <div className="h-screen flex items-center justify-center bg-gray-100">
-      <Counter />
+      <ListForm />
     </div>
   );
 }
