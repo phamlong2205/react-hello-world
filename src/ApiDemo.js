@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axiosInstance from "./axiosInstance";
+import { isCancel } from "axios"; // ✅ import isCancel separately
 
 function ApiDemo() {
   const [response, setResponse] = useState(null);
@@ -9,26 +10,25 @@ function ApiDemo() {
     const controller = new AbortController(); // For cancellation
     const timeout = setTimeout(() => controller.abort(), 5000); // Timeout safety
 
-    try {
-      const res = await axiosInstance.post(
-        "/test-endpoint",
-        { param1: "value1", param2: "value2" },
-        { signal: controller.signal }
-      );
-      setResponse(res.data);
-      console.log("API response:", res.data);
-      // Example redirect
-      // if (res.data.redirectUrl) window.location.href = res.data.redirectUrl;
-    } catch (err) {
-      if (axiosInstance.isCancel(err)) {
-        console.log("Request cancelled:", err.message);
-      } else {
-        setError(err.message);
-        console.error("API error:", err);
-      }
-    } finally {
-      clearTimeout(timeout);
-    }
+   try {
+  const res = await axiosInstance.post(
+    "/test-endpoint",
+    { param1: "value1", param2: "value2" },
+    { signal: controller.signal }
+  );
+  setResponse(res.data);
+  console.log("API response:", res.data);
+} catch (err) {
+  if (isCancel(err)) {  // ✅ use imported isCancel
+    console.log("Request cancelled:", err.message);
+  } else {
+    setError(err.message);
+    console.error("API error:", err);
+  }
+} finally {
+  clearTimeout(timeout);
+}
+
   };
 
   return (
