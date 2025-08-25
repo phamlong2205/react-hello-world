@@ -1,34 +1,41 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { increment, decrement, reset } from "./counterSlice";
+import { increment, decrement, reset, selectCounter } from "./counterSlice";
 
 function Counter() {
-  const count = useSelector((state) => state.counter.value);
+  const count = useSelector(selectCounter);
   const dispatch = useDispatch();
 
   return (
     <div className="p-4">
-      <h1 className="text-xl font-bold">Count: {count}</h1>
-      <div className="space-x-2 mt-2">
-        <button
-          onClick={() => dispatch(increment())}
-          className="px-3 py-1 bg-green-500 text-white rounded"
-        >
-          Increment
-        </button>
-        <button
-          onClick={() => dispatch(decrement())}
-          className="px-3 py-1 bg-red-500 text-white rounded"
-        >
-          Decrement
-        </button>
-        <button
-          onClick={() => dispatch(reset())}
-          className="px-3 py-1 bg-gray-500 text-white rounded"
-        >
-          Reset
-        </button>
-      </div>
+      <h1 className="text-xl font-bold">Counter: {count}</h1>
+      <button
+        onClick={() => dispatch(increment())}
+        className="px-4 py-2 m-2 bg-green-500 text-white rounded"
+      >
+        Increment
+      </button>
+      <button
+        onClick={() => dispatch(decrement())}
+        className="px-4 py-2 m-2 bg-red-500 text-white rounded"
+      >
+        Decrement
+      </button>
+      <button
+        onClick={() => dispatch(reset())}
+        className="px-4 py-2 m-2 bg-gray-500 text-white rounded"
+      >
+        Reset
+      </button>
+
+      {/*Conditional message */}
+      <p className="mt-4">
+        {count > 5
+          ? "🔥 The count is getting high!"
+          : count < 0
+          ? "⚠️ Count is negative!"
+          : "🙂 Keep counting..."}
+      </p>
     </div>
   );
 }
