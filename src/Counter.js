@@ -1,15 +1,34 @@
-import React, { useState } from "react";
-import Button from "./Button";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { increment, decrement, reset } from "./counterSlice";
 
 function Counter() {
-  const [count, setCount] = useState(0);
-
-  const handleIncrement = () => setCount(count + 1);
+  const count = useSelector((state) => state.counter.value);
+  const dispatch = useDispatch();
 
   return (
-    <div className="text-center mt-10 p-6 bg-gray-100 rounded shadow-md">
-      <h1 className="text-3xl font-semibold mb-4 text-gray-800">Count: {count}</h1>    
-        <Button onClick={handleIncrement}>Increment</Button>
+    <div className="p-4">
+      <h1 className="text-xl font-bold">Count: {count}</h1>
+      <div className="space-x-2 mt-2">
+        <button
+          onClick={() => dispatch(increment())}
+          className="px-3 py-1 bg-green-500 text-white rounded"
+        >
+          Increment
+        </button>
+        <button
+          onClick={() => dispatch(decrement())}
+          className="px-3 py-1 bg-red-500 text-white rounded"
+        >
+          Decrement
+        </button>
+        <button
+          onClick={() => dispatch(reset())}
+          className="px-3 py-1 bg-gray-500 text-white rounded"
+        >
+          Reset
+        </button>
+      </div>
     </div>
   );
 }
